@@ -50,7 +50,7 @@ public class StudentFrom implements Serializable {
                     String depertment,
                     LocalDate birth_date,
                     int age,
-                    int admit_year,
+                    int admit_year, 
                     String email,
                     String address
                     ){

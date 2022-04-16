@@ -9,18 +9,20 @@ import org.springframework.stereotype.Service;
 public class StudentFacilityService {
     
      private final StudentDBRepository studentDBRepository;
-
+     
+     //create file jonno ai object k create kora holo
     @Autowired
-    public StudentFacilityService(StudentDBRepository studentDBRepository) {
-        this.studentDBRepository = studentDBRepository;
+    public StudentFacilityService(StudentDBRepository studentDBRepository) {//ai khane create method er jonno
+        this.studentDBRepository = studentDBRepository;         //studentdbrepository object create kora hoice
     }
-    
+    //home page ai kan teke call korce
     public String Grertings(){
         
         return "Well Come to Oure College Management System ...";
     
     
     }
+    //create studentDBRepositoty teke student from data k call kora holo
      public void addNew(StudentFrom studentfrom) {
 
         // filter student by email
@@ -33,6 +35,18 @@ public class StudentFacilityService {
 
         studentDBRepository.save(studentfrom);
     }
+     
+     public void deleteId(Long id){
+         
+         boolean isExist = studentDBRepository.existsById(id);
+         
+         if(!isExist){
+             throw new IllegalStateException("Student Not Found With This "+id);
+         }
+         studentDBRepository.deleteById(id);
+     
+     
+     }
   
     
 }
