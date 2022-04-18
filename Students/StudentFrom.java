@@ -90,15 +90,19 @@ public class StudentFrom implements Serializable {
     
     }
     public int getAge(){
-            return this.age;
+            return Period.between(this.birth_date, LocalDate.now()).getYears();
     }
     
     public void setAge(int age){
         this.age = age;
     
     }
-    public int getBirth_date(){
+   /* public int getBirth_date(){
             return Period.between(this.birth_date, LocalDate.now()).getYears();
+    }*/
+    public LocalDate getBirth_date(){
+        return birth_date;
+    
     }
     
     public void setBirth_date(LocalDate birth_date){
