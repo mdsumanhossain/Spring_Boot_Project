@@ -1,7 +1,9 @@
 
 package com.CollegeManagement.StudentRestApi.Students;
 
+import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,24 @@ public class StudentFacilityService {
     
     
     }
+    //READ ALL STUDENT SERVICE EXIST 
+    public List<StudentFrom> getAllToStudentsInfo(){
+        
+        return studentDBRepository.findAll();
+    
+    }
+    //READ STUDENT ONE BY ONE ID
+    public StudentFrom getStudentOneId (long studentId){
+        
+        StudentFrom studentfrom = studentDBRepository.findById(studentId)
+                .orElseThrow(()-> new IllegalStateException(
+                        "Student With id"+studentId+"dose not exist"
+                
+                ));
+        return studentfrom;
+    
+    }
+    
     //CREATE METHOD USE
     //create studentDBRepositoty teke student from data k call kora holo
      public void addNew(StudentFrom studentfrom) {
@@ -39,6 +59,7 @@ public class StudentFacilityService {
         studentDBRepository.save(studentfrom);
     }
      //UPADATE METHOD USE
+     @Transactional
      public void UpdateStudentId(
              Long studentId,
              StudentFrom updateStudentId
@@ -55,14 +76,14 @@ public class StudentFacilityService {
          }
          //Department
          if(updateStudentId.getDepertment()!=null){
-             currentStudentId.setName(updateStudentId.getDepertment());
+             currentStudentId.setDepertment(updateStudentId.getDepertment());
          }
          //Birth_Date
          if(updateStudentId.getBirth_date() !=null){
              currentStudentId.setBirth_date(updateStudentId.getBirth_date());
          }
          //Admit_Year
-         if(updateStudentId.getAdmit_year() != 0){
+         if(updateStudentId.getAdmit_year() != null){
              currentStudentId.setAdmit_year(updateStudentId.getAdmit_year());
          }
          //Address
@@ -81,7 +102,7 @@ public class StudentFacilityService {
          studentDBRepository.deleteById(id);
      
      
-     }
+     } 
   
     
 }

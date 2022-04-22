@@ -12,7 +12,7 @@ public class ResponseStudent {
     private String depertment;
     private LocalDate birth_date;
     private int age;
-    private int admit_year;
+    private String admit_year;
     private String address;
     
     public ResponseStudent(
@@ -20,7 +20,7 @@ public class ResponseStudent {
             String name,
             String depertment,
             LocalDate birth_date,
-            int admit_year,
+            String admit_year,
             String address)
     {
         this.id = id;
@@ -56,10 +56,10 @@ public class ResponseStudent {
     public void setAge(int age){
         this.age = age;
     }
-    public int getAdmit_year(){
+    public String getAdmit_year(){
         return this.admit_year;
     }
-    public void setAdmit_year(int admit_year){
+    public void setAdmit_year(String admit_year){
         this.admit_year = admit_year;
     }
     public String getAddres(){

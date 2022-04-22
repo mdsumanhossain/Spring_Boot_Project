@@ -35,7 +35,7 @@ public class StudentFrom implements Serializable {
     @Transient
     private int age;
     
-    private int admit_year;
+    private String admit_year;
     private String email;
     private String address;
     
@@ -49,8 +49,7 @@ public class StudentFrom implements Serializable {
                     String name,
                     String depertment,
                     LocalDate birth_date,
-                    int age,
-                    int admit_year, 
+                    String admit_year, 
                     String email,
                     String address
                     ){
@@ -58,7 +57,6 @@ public class StudentFrom implements Serializable {
                     this.id = id;
                     this.name = name;
                     this.depertment = depertment;
-                    this.age = age;
                     this.birth_date = birth_date;
                     this.admit_year = admit_year;
                     this.email = email;
@@ -109,11 +107,11 @@ public class StudentFrom implements Serializable {
         this.birth_date = birth_date;
     
     }
-    public int getAdmit_year(){
+   public String getAdmit_year(){
             return admit_year;
     }
     
-    public void setAdmit_year(int admit_year){
+    public void setAdmit_year(String admit_year){
         this.admit_year = admit_year;
     
     }

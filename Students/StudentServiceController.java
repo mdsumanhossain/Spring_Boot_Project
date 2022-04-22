@@ -1,6 +1,7 @@
 
 package com.CollegeManagement.StudentRestApi.Students;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,36 @@ public class StudentServiceController {
         ) ;
     
     }
+    //READS METHOD USE
+    //READ ALL STUDENT INFORMATION
+    @GetMapping(path ="/allfrom")
+    public ResponseEntity<List<ResponseStudent>> getAllStudentId(){
+        
+       List<StudentFrom> studentlist= studentFacilityService.getAllToStudentsInfo();
+       List<ResponseStudent> returnStudentList = StudentUtilsService.MultiObeToJeson(studentlist);
+       
+       return new ResponseEntity<>(
+               returnStudentList,
+               HttpStatus.OK
+       );
+    
+    
+    }
+    //READ MULTYPLE FILE TO ONE ID INFORMATION
+    //READ STUDENT ONE ID 
+    @GetMapping(path = "{studentId}")
+    public ResponseEntity <ResponseStudent> getStudentById(
+            @PathVariable ("studentId") Long studentId
+     ){
+        StudentFrom studentfrom   = studentFacilityService.getStudentOneId(studentId);
+        ResponseStudent responseStudent = StudentUtilsService.singleIdFind(studentfrom);
+        return new ResponseEntity<>(
+                responseStudent,
+                HttpStatus.OK
+        
+        );
+    
+    }
     //CREATE METHOD PARAMETAR PAS
     //create and post method kaj korbe 
     @PostMapping(path = "/create")
@@ -59,7 +90,7 @@ public class StudentServiceController {
         studentFacilityService.UpdateStudentId(studentId, studentfrom);//and StudentFacilityService UpdateStudentID
         return new ResponseEntity<>(                                   //vitor studentId And studentfrom data raka hobe
                 "Succesfully Updated",
-                HttpStatus.ACCEPTED
+                HttpStatus.OK
         );
     
     }
